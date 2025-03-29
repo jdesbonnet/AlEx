@@ -5,7 +5,7 @@ Library of 3D printed parts to aid construction projects using Aluminium (Alumin
 Status: this library is in early development (pre 1.0), so things are going to be in flux for 
 months 2025-03 and 2025-04.
 
-Example of a 3 axis orthonogal corner join:
+Example of a 3 axis orthogonal corner join:
 
 ```
 use <lib_alex.scad>
