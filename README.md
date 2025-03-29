@@ -2,6 +2,8 @@
 
 Library of 3D printed parts to aid construction projects using Aluminium (Aluminum) extrusions.
 
+Status: this library is in early development (pre 1.0), so things are going to be in flux for 
+months 2025-03 and 2025-04.
 
 Example of a 3 axis orthonogal corner join:
 
@@ -27,11 +29,17 @@ with aluminium extrusion T-nuts.
 The screw length and/or join fitting wall thickness (T) must be chosen carefully so that the screw head is flush
 with the outer surface. 
 
-For example if using 2020 extrusion with 10mm DIN965 M4 screws, then the wall
+For example if using 2020 extrusion with 10mm DIN 965 M4 screws, then the wall
 thickness (T) must be 4mm. If you get this wrong the screw will either protrude 
 or will not be able to sink deep enough to engage with the T-nut thread. 
 
-## Corner join (3 axis orthonogal)
+Tip: print one part first and check that the extrusion slots in snuggly and that the 
+screws properly engage with the T-nut and are flush with the surface when 
+tightened.
+
+## Corner join (3 axis orthogonal)
+
+Print 8 of these to create a box structure.
 
 ![Corner join (3 axis orthogonal)](./image/join_corner.png)
 
