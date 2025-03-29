@@ -3,7 +3,10 @@
 Library of 3D printed parts to aid construction projects using Aluminium (Aluminum) extrusions.
 
 Status: this library is in early development (pre 1.0), so things are going to be in flux for 
-months 2025-03 and 2025-04.
+months 2025-03 and 2025-04. This library is being developed with OpenSCAD software with the
+Prusa Slicer to convert the STL output from OpenSCAD into gcode for my Prusa Mini+ printer.
+I'm prining with PLA polymer.
+
 
 Example of a 3 axis orthogonal corner join:
 
@@ -36,6 +39,11 @@ or will not be able to sink deep enough to engage with the T-nut thread.
 Tip: print one part first and check that the extrusion slots in snuggly and that the 
 screws properly engage with the T-nut and are flush with the surface when 
 tightened.
+
+Tip: you will need to use support structure (eneabled in the slicer software) and 
+thoroughly clean out that material before slotting in the extrusions.
+
+
 
 ## Corner join (3 axis orthogonal)
 
