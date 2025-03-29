@@ -2,6 +2,8 @@
 
 Library of 3D printed parts to aid construction projects using Aluminium (Aluminum) extrusions.
 
+![Example join fitting: corner join (3 axis orthogonal)](./image/join_corner.png)
+
 Status: this library is in early development (pre 1.0), so things are going to be in flux for 
 months 2025-03 and 2025-04. This library is being developed with OpenSCAD software with the
 Prusa Slicer to convert the STL output from OpenSCAD into gcode for my Prusa Mini+ printer.
@@ -36,12 +38,14 @@ For example if using 2020 extrusion with 10mm DIN 965 M4 screws, then the wall
 thickness (T) must be 4mm. If you get this wrong the screw will either protrude 
 or will not be able to sink deep enough to engage with the T-nut thread. 
 
-Tip: print one part first and check that the extrusion slots in snuggly and that the 
-screws properly engage with the T-nut and are flush with the surface when 
-tightened.
+> [!TIP]
+> Print one part first and check that the extrusion slots in snuggly and that the 
+> screws properly engage with the T-nut and are flush with the surface when 
+> tightened.
 
-Tip: you will need to use support structure (eneabled in the slicer software) and 
-thoroughly clean out that material before slotting in the extrusions.
+> [!TIP]
+> You will need to use support structure (eneabled in the slicer software) and 
+> thoroughly clean out that material before slotting in the extrusions.
 
 
 
