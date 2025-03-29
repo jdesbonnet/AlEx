@@ -1,14 +1,23 @@
 /** 
- * Library for aluminium extrusion joins and other parts.
+ * Library for aluminium extrusion joins and related parts.
+ * Currently supports standard 1515 and 2020 extrusions.
+ *
+ * ALD:  Aluminium width mm (15 or 20, but no reason why other sizes won't work)
+ * T:    Wall thickness
+ * L:    Length of join arms.
+ * M:    Screw diameter mm (eg 3 for M3).
+ * 
+ * Joe Desbonnet
+ * 2025-03-28
  */
  
  
- 
+use <lib_screw.scad>; 
  
 /**
  * Holes to allow T-nuts to be used to secure the aluminium extrusion to the join.
  **/ 
-module al_ex_screw_holes(ALD=15,T=3,M=4,ex_center_screw_hole) {
+module AlEx_screw_holes(ALD=15,T=3,M=4,ex_center_screw_hole) {
     eps = 0.001;
     
     L = ALD + T*2 + eps*2;
@@ -52,7 +61,7 @@ module al_ex_screw_holes(ALD=15,T=3,M=4,ex_center_screw_hole) {
  * (enough to split on of the 3mm thick arms) to insert. Therefore it makes sense to add
  * a small extra clearance on those axes.
  **/
-module al_ex_cavity(ALD=15,L=30,T=3) {
+module AlEx_cavity(ALD=15,L=30,T=3) {
     eps = 0.001;
     rotate([0,0,0]) translate ([-ALD/2,-ALD/2,-ALD/2]) cube([ALD,ALD,L+eps]);
     
@@ -67,7 +76,7 @@ module al_ex_cavity(ALD=15,L=30,T=3) {
 /**
  * The sock material that forms each arm of the joint.
  */
-module al_ex_corner_join_arm (ALD=15,L=30,T=2, label="?") {
+module AlEx_corner_join_arm (ALD=15,L=30,T=2, label="?") {
 	hull() {
 		translate([-ALD/2,-ALD/2,0]) cylinder (r=T,h=L);
 		translate([-ALD/2, ALD/2,0]) cylinder (r=T,h=L);
@@ -80,32 +89,27 @@ module al_ex_corner_join_arm (ALD=15,L=30,T=2, label="?") {
 
 
 /**
- * 3 axis 90 degree join. One arm in each of x, y, z axis.
+ * 3 axis 90 degree join. One arm in each of x, y, z axis. For corner
+ * of rectangular box.
  */
-module al_ex_corner_join (ALD=15, L=30,T=3,ex_center_screw_hole=false) {
-    eps = 0.001;
-            
+module AlEx_corner_join (ALD=15, L=30,M=4,T=3,ex_center_screw_hole=false) {
+	eps = 0.001;
+    
 	difference() {
         
-        // This is the stock from which we will subtract from
+		// This is the stock from which we will subtract from
 		union () {
-            rotate ([0,0,0])   translate([0,0,-ALD/2]) al_ex_corner_join_arm(ALD,L,T,"Z");
-            rotate ([-90,0,0]) translate([0,0,-ALD/2]) al_ex_corner_join_arm(ALD,L,T,"Y");
-            rotate ([ 0,90,0]) translate([0,0,-ALD/2]) al_ex_corner_join_arm(ALD,L,T,"X");
-            translate([-ALD/2,-ALD/2,-ALD/2]) sphere(r=T);// round the sharp corner
-        }
+			rotate ([0,0,0])   translate([0,0,-ALD/2]) AlEx_corner_join_arm(ALD,L,T,"Z");
+			rotate ([-90,0,0]) translate([0,0,-ALD/2]) AlEx_corner_join_arm(ALD,L,T,"Y");
+			rotate ([ 0,90,0]) translate([0,0,-ALD/2]) AlEx_corner_join_arm(ALD,L,T,"X");
+			translate([-ALD/2,-ALD/2,-ALD/2]) sphere(r=T);// round the sharp corner
+		}
         
-        // Remove cavity for Al extrusion
-        al_ex_cavity(ALD,L,T);
+		// Remove cavity for Al extrusion
+		AlEx_cavity(ALD,L,T);
 
-        // Drill out screw holes
-        al_ex_screw_holes(ALD,T,4,ex_center_screw_hole);
-        
+		// Drill out screw holes
+		AlEx_screw_holes(ALD,T,M,ex_center_screw_hole);
 	}
-    
-            //al_ex_screw_holes(ALD,T,4,ex_center_screw_hole);
 
-            // Drill out screw holes
-        //al_ex_screw_holes(ALD,L,T,4,ex_center_screw_hole);
-    
 }
