@@ -7,6 +7,8 @@
  * L:    Length of join arms.
  * M:    Screw diameter mm (eg 3 for M3).
  * 
+ * ex_center_crew_hole : boolean flag to indicate if there should be a hole for a 
+ *                       screw that goes down the centre of the extrusion
  * Joe Desbonnet
  * 2025-03-28
  */
@@ -16,6 +18,7 @@ use <lib_screw.scad>;
  
 /**
  * Holes to allow T-nuts to be used to secure the aluminium extrusion to the join.
+ * 
  **/ 
 module AlEx_screw_holes(ALD=15,T=3,M=4,ex_center_screw_hole) {
     eps = 0.001;
