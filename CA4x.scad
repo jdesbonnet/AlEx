@@ -8,6 +8,8 @@ translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
 //translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
 //translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
+     //translate([-6,6,6]) cube ([30,30,8]);
+    
 /**
  *
  * Right-angle corner join for 2020 aluminium extrusion (Bosch standard profile
@@ -55,6 +57,13 @@ module CA42 () {
         cube ([30,30,20]);
         translate([0,0,-eps]) rotate([0,0,45]) cube ([50,30,20+eps*3]);
 
+
+        // Clear out material to make screw insertion easier (optional)
+        // but likely to require support material.
+        // Experimental. Use curved cutout to reduce need for support material.
+        translate([30,0,10]) rotate([-90,0,45]) translate([0,0,20]) scale([2.2,1,1]) sphere (d=12);
+
+
         // Holes for M4 DIN965 10mm bolts d2 (head dia) = 7.5mm; k (head surface to thread start) = 2.2mm
         translate ([10,0-eps,10]) rotate([-90,0,0]) screwhole();
         translate ([20,0-eps,10]) rotate([-90,0,0]) screwhole();
@@ -65,6 +74,8 @@ module CA42 () {
         translate([7.5,2,0]) translate([0,0,20-0.3]) linear_extrude(0.6) text("CA42", size=6);
 
     }
+    
+
 
     // Slot notches: these should squeeze into the aluminium grooves and provide extra
     // ridgitity of the joint in out-of-plane forces/torques. Ie forces where there is a 
@@ -73,12 +84,15 @@ module CA42 () {
     // Groove width measured at 6.27mm, setting at 6.30. When screws tighten this should sqeeze
     // these notches in. I'm hoping to get away with printing this without hoverhang supports.
     // Update: these notches work. Works well at nw=6.3mm wide, but I think it can be slightly wider.
-    nw = 6.6;
+    nw = 6.3;
     translate ([0,-1,(20-nw)/2]) cube ([4,1,nw]);
     translate ([26,-1,(20-nw)/2]) cube ([4,1,nw]);
 
     translate ([30,0,(20-nw)/2]) cube ([1,4,nw]);
     translate ([30,26,(20-nw)/2]) cube ([1,4,nw]);
+
+
+
 
 
     // Cavity for DIN965 M4 bolt including the conical head. 
