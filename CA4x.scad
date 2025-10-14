@@ -2,26 +2,51 @@ $fn = 60;
 eps = 0.001;
 
 translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
-translate([-1,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
+//translate([-1,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
 
-translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
-translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
+//translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
+//translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
 /**
  *
- * Right-angle corner join for 2020 aluminium extrusion (Bosch standard profile). 
+ * Right-angle corner join for 2020 aluminium extrusion (Bosch standard profile
+ * with 6mm groove). 
  *
  * The join requires 4 x countersuck flat head DIN965 M4 bolts length 10mm. 
  * Other standards might work provided the space for the bolt head is compatible
- * (ie code from d1=4.6mm to d2=7.5mm with head height 2.2mm).
+ * (ie a cone with d1=4.6mm to d2=7.5mm with head height 2.2mm).
  *
  * Also required are 4 x M4 T-nuts compatible with 6mm groove 2020 extrusions.
  *
+ * Use instruction: insert 4 x M4 bolts into the join until the tread protrudes
+ * out the far side. Twist a T-nut onto the protruded thread and tighten so that
+ * the bolt head sits snugly in the countersunk cavity (this is necessary to 
+ * allow bolts in the orthogonal direction to be inserted). Now align the
+ * T-nuts so that that long axis of the nut can be directly inserted into the
+ * 2020 groove. 
+ *
+ * Once the join is in place, before tightning the bolts, first
+ * loosen the bolt (by N turns). This will loosen the T-nut in the groove 
+ * sufficiently so that it can rotate when tighting so that the long 
+ * axis is perpendicular to the groove - this provides the optimum grip.
+ * If possible visually inspect the T-nut to ensure that rotation has taken place.
+ *
+ * Alternativly if you have access to an open end of the 2020
+ * extrusion you can align the T-nuts so that the long axis is perpendicular
+ * to the groove. Before insertion tighten bolt/nut to 'finger tight'. Slide the
+ * join to where it's needed and then fully tighten the bolts.
+ *
+ * Notes about the slicing: tested with 0.6mm nozzel with 0.3mm layer height on
+ * Prusa Mini+. Printed with PLA. Set vertical shells to [TODO - EXPERIMENT] 4.
+ * Since bolt heads / T-nuts will be applying significant compressive force along 
+ * the direction of the bolt holes these structures should be made as strong
+ * as possible for compression.
+ 
  * Part number:
  * C - corner join 
  * A - type A
- * 4 - M4 screws
+ * 4 - M4 bolts
  * 2 - 20mm slot 6 aluminium profile
  */
 module CA42 () {
@@ -42,7 +67,8 @@ module CA42 () {
     }
 
     // Slot notches: these should squeeze into the aluminium grooves and provide extra
-    // ridgitity of the joint in out-of-plane torques.
+    // ridgitity of the joint in out-of-plane forces/torques. Ie forces where there is a 
+    // 'z' component (if you consider the two struts being joing being on the x and y axis).
     //
     // Groove width measured at 6.27mm, setting at 6.30. When screws tighten this should sqeeze
     // these notches in. I'm hoping to get away with printing this without hoverhang supports.
