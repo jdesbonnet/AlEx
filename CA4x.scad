@@ -12,7 +12,7 @@ translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
  *
  * Right-angle corner join for 2020 aluminium extrusion (Bosch standard profile). 
  *
- * The join requires 4 x countersuck flat head DIN 965 M4 bolts length 10mm. 
+ * The join requires 4 x countersuck flat head DIN965 M4 bolts length 10mm. 
  * Other standards might work provided the space for the bolt head is compatible
  * (ie code from d1=4.6mm to d2=7.5mm with head height 2.2mm).
  *
@@ -41,9 +41,9 @@ module CA42 () {
 
     }
 
-    // Experimental: alignment notches: these should squeeze into the aluminium grooves 
-    // (deliberate tight fit).
-    // This I hope will reduce wiggle.
+    // Slot notches: these should squeeze into the aluminium grooves and provide extra
+    // ridgitity of the joint in out-of-plane torques.
+    //
     // Groove width measured at 6.27mm, setting at 6.30. When screws tighten this should sqeeze
     // these notches in. I'm hoping to get away with printing this without hoverhang supports.
     // Update: these notches work. Works well at nw=6.3mm wide, but I think it can be slightly wider.
@@ -55,11 +55,12 @@ module CA42 () {
     translate ([30,26,(20-nw)/2]) cube ([1,4,nw]);
 
 
-module screwhole() {
-	translate([0,0,0]) cylinder (d=4.6,h=3+eps);
-	translate([0,0,3]) cylinder (d1=4.6, d2=7.5, ,h=2.2);
-	translate([0,0,5.2]) cylinder (d=7.5, ,h=20);
-}
+    // Cavity for DIN965 M4 bolt including the conical head. 
+    module screwhole() {
+        translate([0,0,0]) cylinder (d=4.6,h=3+eps);
+        translate([0,0,3]) cylinder (d1=4.6, d2=7.5, ,h=2.2);
+        translate([0,0,5.2]) cylinder (d=7.5, ,h=20);
+    }
 
 
 }
