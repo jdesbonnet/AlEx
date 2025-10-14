@@ -1,14 +1,24 @@
 $fn = 60;
 eps = 0.001;
 
-//translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
+translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
 translate([-1,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
 
-//translate([34,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
-//translate([32,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
+translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
+translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
 /**
+ *
+ * Right-angle corner join for 2020 aluminium extrusion (Bosch standard profile). 
+ *
+ * The join requires 4 x countersuck flat head DIN 965 M4 bolts length 10mm. 
+ * Other standards might work provided the space for the bolt head is compatible
+ * (ie code from d1=4.6mm to d2=7.5mm with head height 2.2mm).
+ *
+ * Also required are 4 x M4 T-nuts compatible with 6mm groove 2020 extrusions.
+ *
+ * Part number:
  * C - corner join 
  * A - type A
  * 4 - M4 screws
@@ -31,15 +41,18 @@ module CA42 () {
 
     }
 
-    // Experimental: alignment: these should squeeze into the Al grooves (deliberate tight fit).
+    // Experimental: alignment notches: these should squeeze into the aluminium grooves 
+    // (deliberate tight fit).
     // This I hope will reduce wiggle.
     // Groove width measured at 6.27mm, setting at 6.30. When screws tighten this should sqeeze
-    // these notches in.
-    translate ([0,-1,(20-6.3)/2]) cube ([4,1,6.3]);
-    translate ([26,-1,(20-6.3)/2]) cube ([4,1,6.3]);
+    // these notches in. I'm hoping to get away with printing this without hoverhang supports.
+    // Update: these notches work. Works well at nw=6.3mm wide, but I think it can be slightly wider.
+    nw = 6.6;
+    translate ([0,-1,(20-nw)/2]) cube ([4,1,nw]);
+    translate ([26,-1,(20-nw)/2]) cube ([4,1,nw]);
 
-    translate ([30,0,(20-6.3)/2]) cube ([1,4,6.3]);
-    translate ([30,26,(20-6.3)/2]) cube ([1,4,6.3]);
+    translate ([30,0,(20-nw)/2]) cube ([1,4,nw]);
+    translate ([30,26,(20-nw)/2]) cube ([1,4,nw]);
 
 
 module screwhole() {
