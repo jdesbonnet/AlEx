@@ -2,11 +2,11 @@ $fn = 60;
 eps = 0.001;
 
 translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
-//translate([-1,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
+translate([-1,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
 
-//translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
-//translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
+translate([36,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
+translate([34,0,0]) rotate ([0,0,  180]) translate([-15,-15,0]) CA42();
 
      //translate([-6,6,6]) cube ([30,30,8]);
     
@@ -47,10 +47,14 @@ translate([1,0,0]) rotate ([0,0,   0]) translate([-15,-15,0]) CA42();
  * 
  * Notes about the slicing for 3D printer: 
  * This is tested with 0.6mm nozzel with 0.3mm layer height on
- * Prusa Mini+. Printed with PLA. Set vertical shells to [TODO - EXPERIMENT] 4.
+ * Prusa Mini+. Printed with PLA. Set vertical shells to 4 or more.
  * Since bolt heads / T-nuts will be applying significant compressive force along 
  * the direction of the bolt holes these structures should be made as strong
  * as possible for compression.
+ *
+ * TODO: current version is designed for DIN965 bolts. This may not be the best
+ * choice for use with PLA 3D print. Considering DIN912 with a flat cylinder head
+ * as alternative.
  
  * Part number:
  * C - corner join 
