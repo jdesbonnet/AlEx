@@ -193,7 +193,7 @@ module CB42 () {
     module screwhole_DIN912() {
         // Bolt shaft
         translate([0,0,0]) cylinder (d=4.6,h=15+eps);
-        translate([0,0,6]) cylinder (d=7.2, ,h=40);
+        translate([0,0,6]) cylinder (d=7.4, ,h=40);
     }
     
     module bolt_DIN912(m=4,h=10) {
