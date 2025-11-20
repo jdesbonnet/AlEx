@@ -132,6 +132,15 @@ module CA42 () {
         translate([0,0,3]) cylinder (d=7.2, ,h=40);
     }
 }
+
+/**
+ * Similar to CA42 except designed for DIN912 10mm bolts. Due to the bolt head height
+ * it the bolt hole spacing had to be increased necessiating the increase in size to
+ * a 40x40x20mm clipped along the diagnal.
+ *
+ * Idea: tiny hole to allow verification if T-nut has properly engaged with groove.
+ */
+
 module CB42 () {
     
 
